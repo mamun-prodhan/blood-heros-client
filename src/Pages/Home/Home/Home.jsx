@@ -1,5 +1,6 @@
 import AboutUs from "../AboutUs/AboutUs";
 import Banner from "../Banner/Banner";
+import ContactUs from "../ContactUs/ContactUs";
 import GotQuestions from "../GotQuestions/GotQuestions";
 import HowItWorks from "../HowItWorks/HowItWorks";
 
@@ -10,6 +11,7 @@ const Home = () => {
       <AboutUs></AboutUs>
       <HowItWorks></HowItWorks>
       <GotQuestions></GotQuestions>
+      <ContactUs></ContactUs>
     </div>
   );
 };

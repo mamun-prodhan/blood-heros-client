@@ -6,7 +6,7 @@ import { BiDonateBlood } from "react-icons/bi";
 import { FaHeartCircleCheck } from "react-icons/fa6";
 const HowItWorks = () => {
   return (
-    <div className="mt-10 md:mt-16 mb-20">
+    <div className="mt-10 md:mt-16 ">
       <h2 className=" mb-10 text-center">
         <span className="text-2xl md:text-3xl lg:text-4xl uppercase font-bold pb-2 border-b-4 border-[#FF6251] text-[#FF6251] ">
           How

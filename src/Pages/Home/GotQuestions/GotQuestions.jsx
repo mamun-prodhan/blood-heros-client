@@ -2,7 +2,7 @@ import { Accordion } from "flowbite-react";
 
 const GotQuestions = () => {
   return (
-    <div className="mt-10 md:mt-16 mb-20">
+    <div className="mt-10 md:mt-16">
       <h2 className=" mb-10 text-center">
         <span className="text-2xl md:text-3xl lg:text-4xl uppercase font-bold pb-2 border-b-4 border-[#FF6251] text-[#FF6251] ">
           Got Questions ?
@@ -12,7 +12,7 @@ const GotQuestions = () => {
           No Worries
         </span>
       </h2>
-      <div className="grid grid-cols-1 gap-10  md:grid-cols-2 p-4 md:p-0">
+      <div className="grid grid-cols-1 gap-5 md:gap-10  md:grid-cols-2 p-4 md:p-0">
         <div className="space-y-5">
           <Accordion collapseAll>
             <Accordion.Panel>
