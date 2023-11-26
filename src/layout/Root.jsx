@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import MenuBar from "../Pages/Shared/MenuBar/MenuBar";
-import Footer from "../Pages/Shared/Footer/Footer";
+import Footerr from "../Pages/Shared/Footer/Footerr";
 
 const Root = () => {
   return (
@@ -9,7 +9,7 @@ const Root = () => {
       <div className="flex-grow">
         <Outlet></Outlet>
       </div>
-      <Footer></Footer>
+      <Footerr></Footerr>
     </div>
   );
 };
