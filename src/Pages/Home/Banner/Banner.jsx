@@ -3,7 +3,7 @@ import banner from "../../../assets/banner.png";
 import { Link } from "react-router-dom";
 const Banner = () => {
   return (
-    <div className="flex flex-col gap-5 items-center md:flex-row-reverse">
+    <div className="flex pb-5 flex-col gap-5 items-center md:flex-row-reverse">
       <div className="flex-1">
         <img src={banner} alt="" />
       </div>
