@@ -1,12 +1,14 @@
 import { Button, FileInput, Label, Select, TextInput } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 
-const schema = yup.object({});
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+// imgbb api key
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const Register = () => {
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
@@ -19,8 +21,34 @@ const Register = () => {
   const [upazilas, setUpazilas] = useState([]);
   const [passwordMatch, setPasswordMatch] = useState(true);
 
-  const onSubmit = (data) => {
+  // get and submit form data
+  const onSubmit = async (data) => {
     console.log(data);
+    // image upload to imgbb and get the url
+    const imageFile = { image: data.photo[0] };
+    const res = await axiosPublic.post(image_hosting_api, imageFile, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    console.log(res);
+    if (res.data.success) {
+      // now send the menu item data to the server with the image url
+      const users = {
+        name: data.name,
+        email: data.email,
+        photo: res.data.data.display_url,
+        bloodGroup: data.bloodGroup,
+        upazila: data.upazila,
+        district: data.district,
+        password: data.password,
+        role: "donor",
+        status: "active",
+      };
+      // post user data to database
+      const userRes = await axiosPublic.post("/users", users);
+      console.log(userRes.data);
+      // if (userRes.data.insertedId) {
+      // }
+    }
   };
 
   const validatePassword = () => {
@@ -51,8 +79,15 @@ const Register = () => {
   }, []);
 
   return (
-    <div className="max-w-xl mx-auto my-20">
-      <h2>Please Register</h2>
+    <div className="max-w-xl mx-auto my-20 px-4 md:px-0">
+      <h2 className="mb-5 md:mb-10 text-center">
+        <span className="text-2xl md:text-3xl lg:text-4xl uppercase font-thin text-[#FF6251] ">
+          Please{" "}
+        </span>
+        <span className="text-2xl md:text-3xl lg:text-4xl uppercase font-bold pb-2 border-b-4 border-[#FF6251] text-[#FF6251] ">
+          Login
+        </span>
+      </h2>
       <div>
         <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
           {/* name */}
