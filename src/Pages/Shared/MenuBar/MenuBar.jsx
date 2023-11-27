@@ -10,7 +10,7 @@ const MenuBar = () => {
   const user = { displayName: "Mamun", photoURL: "photo" };
   let navLinks = (
     <>
-      <li className="md:ml-8 text-xl md:my-0 my-7">
+      <li className="md:ml-4 text-xl md:my-0 my-7">
         <NavLink
           to="/"
           className="text-gray-800  px-4 py-2 rounded-md hover:bg-red-300 duration-500"
@@ -18,7 +18,7 @@ const MenuBar = () => {
           Home
         </NavLink>
       </li>
-      <li className="md:ml-8 text-xl md:my-0 mb-7">
+      <li className="md:ml-2 text-xl md:my-0 mb-7">
         <NavLink
           to="donation-request"
           className="text-gray-800 px-4 py-2 rounded-md hover:bg-red-300 duration-500"
@@ -26,12 +26,28 @@ const MenuBar = () => {
           Donation Request
         </NavLink>
       </li>
-      <li className="md:ml-8 text-xl md:my-0 mb-7">
+      <li className="md:ml-2 text-xl md:my-0 mb-7">
         <NavLink
           to="/blogs"
           className="text-gray-800 px-4 py-2 rounded-md hover:bg-red-300 duration-500"
         >
           Blogs
+        </NavLink>
+      </li>
+      <li className="md:ml-2 text-xl md:my-0 mb-7">
+        <NavLink
+          to="/fundings"
+          className="text-gray-800 px-4 py-2 rounded-md hover:bg-red-300 duration-500"
+        >
+          Fundings
+        </NavLink>
+      </li>
+      <li className="md:ml-2 text-xl md:my-0 mb-7">
+        <NavLink
+          to="/dashboard"
+          className="text-gray-800 px-4 py-2 rounded-md hover:bg-red-300 duration-500"
+        >
+          Dashboard
         </NavLink>
       </li>
     </>
