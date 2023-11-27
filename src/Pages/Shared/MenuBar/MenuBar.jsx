@@ -4,10 +4,12 @@ import { Button } from "flowbite-react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { useState } from "react";
 import "./MenuBar.css";
+import useAuth from "../../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const MenuBar = () => {
   let [open, setOpen] = useState(false);
-  const user = { displayName: "Mamun", photoURL: "photo" };
+  const { user, logOut } = useAuth();
   let navLinks = (
     <>
       <li className="md:ml-4 text-xl md:my-0 my-7">
@@ -54,8 +56,20 @@ const MenuBar = () => {
   );
 
   const handleSignOut = () => {
-    console.log("sign out complete");
+    logOut()
+      .then(() => {
+        console.log("Logout successfully");
+        Swal.fire({
+          title: "Successfull",
+          text: "Logout successfully",
+          icon: "success",
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
+
   return (
     <div className="shadow-md w-full ">
       <div className="bg-red-100 md:flex items-center justify-between py-4 md:px-10 px-7  ">
@@ -68,28 +82,18 @@ const MenuBar = () => {
           {!user && (
             <div className="flex items-center gap-5">
               <Link to="/login">
-                <Button>Login</Button>
+                <Button gradientMonochrome="failure">Login</Button>
               </Link>
               <Link to="/register">
-                <Button>Register</Button>
+                <Button gradientMonochrome="failure">Register</Button>
               </Link>
             </div>
           )}
           {user && (
             <div className="flex gap-5 items-center">
-              <div className="flex items-center gap-2">
-                <img
-                  className="h-8 w-8 rounded-full border-2"
-                  src={user?.photoURL}
-                  alt=""
-                />
-                <p>
-                  {user?.displayName?.length > 6
-                    ? user.displayName.slice(0, 6) + "..."
-                    : user.displayName}
-                </p>
-              </div>
-              <Button onClick={handleSignOut}>Logout</Button>
+              <Button onClick={handleSignOut} gradientMonochrome="failure">
+                Logout
+              </Button>
             </div>
           )}
         </div>
@@ -114,22 +118,18 @@ const MenuBar = () => {
             {!user && (
               <>
                 <Link to="/login">
-                  <Button>Login</Button>
+                  <Button gradientMonochrome="failure">Login</Button>
                 </Link>
                 <Link to="/register">
-                  <Button>Register</Button>
+                  <Button gradientMonochrome="failure">Register</Button>
                 </Link>
               </>
             )}
             {user?.email && (
               <>
-                <img
-                  className="h-8 w-8 rounded-full border-2"
-                  src={user.photoURL}
-                  alt=""
-                />
-
-                <Button onClick={handleSignOut}>Logout</Button>
+                <Button onClick={handleSignOut} gradientMonochrome="failure">
+                  Logout
+                </Button>
               </>
             )}
           </div>

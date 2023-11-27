@@ -3,18 +3,23 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
+import { Link, useNavigate } from "react-router-dom";
 // imgbb api key
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const Register = () => {
   const axiosPublic = useAxiosPublic();
+  const { createUser } = useAuth();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     setError,
     watch,
-    // reset,
+    reset,
     formState: { errors },
   } = useForm();
   const [districts, setDistricts] = useState([]);
@@ -46,8 +51,19 @@ const Register = () => {
       // post user data to database
       const userRes = await axiosPublic.post("/users", users);
       console.log(userRes.data);
-      // if (userRes.data.insertedId) {
-      // }
+      if (userRes.data.insertedId) {
+        createUser(data.email, data.password).then((result) => {
+          const loggedUser = result.user;
+          console.log(loggedUser);
+          reset();
+          Swal.fire({
+            title: "Sign up Successfull",
+            text: "You clicked the button!",
+            icon: "success",
+          });
+          navigate("/");
+        });
+      }
     }
   };
 
@@ -79,13 +95,13 @@ const Register = () => {
   }, []);
 
   return (
-    <div className="max-w-xl mx-auto my-20 px-4 md:px-0">
-      <h2 className="mb-5 md:mb-10 text-center">
+    <div className="max-w-xl mx-auto my-10 md:my-20 px-4 md:px-0">
+      <h2 className="mb-5  text-center">
         <span className="text-2xl md:text-3xl lg:text-4xl uppercase font-thin text-[#FF6251] ">
           Please{" "}
         </span>
         <span className="text-2xl md:text-3xl lg:text-4xl uppercase font-bold pb-2 border-b-4 border-[#FF6251] text-[#FF6251] ">
-          Login
+          Register
         </span>
       </h2>
       <div>
@@ -265,6 +281,12 @@ const Register = () => {
             Register
           </Button>
         </form>
+        <p className="font-bold py-4 text-center">
+          New to this Website ? Please{" "}
+          <Link to="/login" className="text-[#FF6251]">
+            Login
+          </Link>
+        </p>
       </div>
     </div>
   );
