@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import MenuBar from "../Pages/Shared/MenuBar/MenuBar";
 import Footerr from "../Pages/Shared/Footer/Footerr";
 
