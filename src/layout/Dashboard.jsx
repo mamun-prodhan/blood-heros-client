@@ -10,7 +10,7 @@ import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 const Dashboard = () => {
   let [open, setOpen] = useState(false);
   return (
-    <div className="flex">
+    <div className="flex max-w-7xl mx-auto">
       {/* dashboard side bar */}
       <div className="w-64 min-h-screen bg-[#ffb8b0] hidden md:block">
         <ul className="menu px-4 mt-10 space-y-4">
@@ -108,7 +108,7 @@ const Dashboard = () => {
       </div>
 
       {/* dashboard content */}
-      <div className="flex-1 p-10">
+      <div className="flex-1 p-10 bg-[#d4d2d2]">
         <Outlet></Outlet>
       </div>
     </div>

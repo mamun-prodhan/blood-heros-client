@@ -1,5 +1,6 @@
 import { Button } from "flowbite-react";
 import useProfile from "../../../hooks/useProfile";
+import { Link } from "react-router-dom";
 
 const UserProfile = () => {
   const [loggedInUser, refetch, isLoading] = useProfile();
@@ -31,7 +32,9 @@ const UserProfile = () => {
             <span className="font-bold">Blood Group:</span>{" "}
             {loggedInUser?.bloodGroup}
           </p>
-          <Button gradientMonochrome="failure">Edit Profile</Button>
+          <Button gradientMonochrome="failure">
+            <Link to="/dashboard/update-user-profile">Edit Profile</Link>
+          </Button>
         </div>
       </div>
     </div>
