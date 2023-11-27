@@ -10,12 +10,15 @@ import { useForm } from "react-hook-form";
 import useProfile from "../../../hooks/useProfile";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { useState } from "react";
+import Swal from "sweetalert2";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const UpdateUserProfile = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
+  const [btnLoading, setBtnLoading] = useState(false);
   const [loggedInUser, refetch, isLoading] = useProfile();
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
@@ -4060,6 +4063,7 @@ const UpdateUserProfile = () => {
   ];
 
   const onSubmit = async (data) => {
+    setBtnLoading(true);
     console.log("form data", data);
     // image upload to imgbb and the get an url
     const imageFile = { image: data.photo[0] };
@@ -4079,7 +4083,17 @@ const UpdateUserProfile = () => {
         `/users?email=${loggedInUser.email}`,
         userUpdatedData
       );
-      console.log("profile updated", userUpdateRes.data);
+      if (userUpdateRes.data.modifiedCount > 0) {
+        // show pop up msg
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `${loggedInUser.name} your profile is updated`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        setBtnLoading(false);
+      }
     }
   };
 
@@ -4196,7 +4210,12 @@ const UpdateUserProfile = () => {
             </Select>
           </div>
           <Button className="w-full" type="submit" gradientMonochrome="failure">
-            Update
+            Update{" "}
+            {btnLoading && (
+              <span>
+                <Spinner aria-label="Extra large spinner example" size="xl" />
+              </span>
+            )}
           </Button>
         </form>
       </div>
