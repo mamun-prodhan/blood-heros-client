@@ -1,18 +1,22 @@
-import { Button } from "flowbite-react";
+import { Button, Spinner } from "flowbite-react";
 import useProfile from "../../../hooks/useProfile";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 const UserProfile = () => {
   const [loggedInUser, refetch, isLoading] = useProfile();
   console.log(loggedInUser);
 
-  useEffect(() => {
-    refetch();
-  }, [loggedInUser, refetch]);
+  // useEffect(() => {
+  //   refetch();
+  // }, [loggedInUser, refetch]);
 
   if (isLoading) {
-    return <h2 className="text-5xl font-bold text-red-600 my-20">Loading</h2>;
+    return (
+      <div className="text-center my-40">
+        <Spinner aria-label="Extra large spinner example" size="xl" />
+      </div>
+    );
   }
 
   return (
