@@ -3,9 +3,27 @@ import { Badge, Button, Dropdown, Label, Select, Table } from "flowbite-react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { useEffect, useState } from "react";
 const MyDonationRequest = () => {
   const [myDonationRequest, refetch] = useMyDonationRequest();
   const axiosPublic = useAxiosPublic();
+  const [loadedData, setLoadedData] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("pending");
+  console.log("selected category");
+
+  //   filter onclick
+  const handleFilter = (e) => {
+    const filterValue = e.target.value;
+    setSelectedCategory(filterValue);
+    console.log("handle filter clicked", filterValue);
+  };
+
+  useEffect(() => {
+    const loadedFilterData = myDonationRequest.filter(
+      (item) => item.donationStatus === selectedCategory
+    );
+    setLoadedData(loadedFilterData);
+  }, [myDonationRequest, selectedCategory]);
 
   // handle delete request
   const handleDelete = (id) => {
@@ -53,13 +71,13 @@ const MyDonationRequest = () => {
               <Label htmlFor="status" value="Filter" />
             </div>
             <Select
-              // onChange={handleFilter}
+              onChange={handleFilter}
               name="status"
               id="status"
               type="text"
               required
             >
-              <option value="all">All</option>
+              {/* <option value="all">All</option> */}
               <option value="pending">Pending</option>
               <option value="inprogress">Inprogress</option>
               <option value="canceled">Canceled</option>
@@ -83,7 +101,7 @@ const MyDonationRequest = () => {
                 <Table.HeadCell>Action</Table.HeadCell>
               </Table.Head>
               <Table.Body className="divide-y">
-                {myDonationRequest?.map((request) => (
+                {loadedData?.map((request) => (
                   <Table.Row
                     key={request._id}
                     className="bg-white dark:border-gray-700 dark:bg-gray-800"
