@@ -9,7 +9,7 @@ const useMyDonationRequest = () => {
   const {
     data: myDonationRequest = [],
     refetch,
-    isLoading,
+    isFetching,
   } = useQuery({
     queryKey: ["myDonationRequest", user?.email],
     queryFn: async () => {
@@ -19,7 +19,7 @@ const useMyDonationRequest = () => {
       return res.data;
     },
   });
-  return [myDonationRequest, refetch, isLoading];
+  return [myDonationRequest, refetch, isFetching];
 };
 
 export default useMyDonationRequest;

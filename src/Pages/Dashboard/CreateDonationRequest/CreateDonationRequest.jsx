@@ -26,8 +26,8 @@ const CreateDonationRequest = () => {
     setBtnLoading(true);
     const currentDate = new Date();
     const donationRequestData = {
-      requesterName: data.requesterName,
-      requesterEmail: data.requesterEmail,
+      requesterName: loggedInUser.name,
+      requesterEmail: loggedInUser.email,
       recipientName: data.recipientName,
       bloodGroup: data.bloodGroup,
       recipientDistrict: data.recipientDistrict,

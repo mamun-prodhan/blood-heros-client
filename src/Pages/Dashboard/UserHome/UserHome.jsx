@@ -1,12 +1,13 @@
-import { Badge, Button, Dropdown, Table } from "flowbite-react";
+import { Badge, Button, Dropdown, Spinner, Table } from "flowbite-react";
 import useMyDonationRequest from "../../../hooks/useMyDonationRequest";
 import useProfile from "../../../hooks/useProfile";
 import { Link } from "react-router-dom";
 
 const UserHome = () => {
-  const [loggedInUser, isLoading] = useProfile();
+  const [loggedInUser] = useProfile();
   const [myDonationRequest] = useMyDonationRequest();
   console.log(myDonationRequest);
+
   return (
     <div>
       {/* user dashboard title */}
