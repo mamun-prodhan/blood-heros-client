@@ -6,7 +6,6 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 const MyDonationRequest = () => {
   const [myDonationRequest, refetch] = useMyDonationRequest();
   const axiosPublic = useAxiosPublic();
-  console.log(myDonationRequest);
 
   // handle delete request
   const handleDelete = (id) => {
