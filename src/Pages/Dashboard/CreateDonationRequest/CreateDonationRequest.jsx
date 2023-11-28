@@ -70,180 +70,196 @@ const CreateDonationRequest = () => {
           Request
         </span>
       </h2>
-      <div>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          {/*requester name */}
-          <div>
-            <div className="mb-2 block">
-              <Label htmlFor="requesterName" value="Requester name" />
+      {loggedInUser?.status === "blocked" && (
+        <div>
+          <h2 className="text-xl md:text-3xl font-bold text-center text-[#FF6251]">
+            You have Blocked By Admin
+          </h2>
+          <p className="text-base md:text-xl font-bold text-center mt-6">
+            You can not create any Request
+          </p>
+        </div>
+      )}
+      {loggedInUser?.status === "active" && (
+        <div>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            {/*requester name */}
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="requesterName" value="Requester name" />
+              </div>
+              <TextInput
+                type="text"
+                id="requesterName"
+                defaultValue={loggedInUser.name}
+                placeholder="Requester name"
+                {...register("requesterName")}
+                required
+                readOnly
+              />
             </div>
-            <TextInput
-              type="text"
-              id="requesterName"
-              defaultValue={loggedInUser.name}
-              placeholder="Requester name"
-              {...register("requesterName")}
-              required
-              readOnly
-            />
-          </div>
-          {/*requester email */}
-          <div>
-            <div className="mb-2 block">
-              <Label htmlFor="requesterEmail" value="Requester email" />
+            {/*requester email */}
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="requesterEmail" value="Requester email" />
+              </div>
+              <TextInput
+                type="email"
+                id="requesterEmail"
+                defaultValue={loggedInUser.email}
+                placeholder="Requester email"
+                {...register("requesterEmail")}
+                required
+                readOnly
+              />
             </div>
-            <TextInput
-              type="email"
-              id="requesterEmail"
-              defaultValue={loggedInUser.email}
-              placeholder="Requester email"
-              {...register("requesterEmail")}
-              required
-              readOnly
-            />
-          </div>
-          {/*recipient name */}
-          <div>
-            <div className="mb-2 block">
-              <Label htmlFor="recipientName" value="Recipient name" />
+            {/*recipient name */}
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="recipientName" value="Recipient name" />
+              </div>
+              <TextInput
+                type="text"
+                id="recipientName"
+                placeholder="Recipient name"
+                {...register("recipientName")}
+                required
+              />
             </div>
-            <TextInput
-              type="text"
-              id="recipientName"
-              placeholder="Recipient name"
-              {...register("recipientName")}
-              required
-            />
-          </div>
-          {/* blood group */}
-          <div>
-            <div className="mb-2 block">
-              <Label htmlFor="bloodGroup" value="Recipient Blood Group" />
-            </div>
-            <Select id="bloodGroup" required {...register("bloodGroup")}>
-              <option disabled value="default">
-                Select a category
-              </option>
-              <option value="A+">A+</option>
-              <option value="A-">A-</option>
-              <option value="B+">B+</option>
-              <option value="B-">B-</option>
-              <option value="AB+">AB+</option>
-              <option value="AB-">AB-</option>
-              <option value="O+">O+</option>
-              <option value="O-">O-</option>
-            </Select>
-          </div>
-          {/*recipient district */}
-          <div>
-            <div className="mb-2 block">
-              <Label htmlFor="recipientDistrict" value="Recipient District" />
-            </div>
-            <Select
-              id="recipientDistrict"
-              required
-              {...register("recipientDistrict")}
-            >
-              {districts.map((district) => (
-                <option key={district.id} value={district.name}>
-                  {district.name}
+            {/* blood group */}
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="bloodGroup" value="Recipient Blood Group" />
+              </div>
+              <Select id="bloodGroup" required {...register("bloodGroup")}>
+                <option disabled value="default">
+                  Select a category
                 </option>
-              ))}
-            </Select>
-          </div>
-          {/*recipient upazila */}
-          <div>
-            <div className="mb-2 block">
-              <Label htmlFor="recipientUpazila" value="Recipient Upazila" />
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+              </Select>
             </div>
-            <Select
-              id="recipientUpazila"
-              required
-              {...register("recipientUpazila")}
-            >
-              {upazilas.map((upazila) => (
-                <option key={upazila.id} value={upazila.name}>
-                  {upazila.name}
-                </option>
-              ))}
-            </Select>
-          </div>
-          {/*hospital name */}
-          <div>
-            <div className="mb-2 block">
-              <Label htmlFor="hospitalName" value="Hospital name" />
+            {/*recipient district */}
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="recipientDistrict" value="Recipient District" />
+              </div>
+              <Select
+                id="recipientDistrict"
+                required
+                {...register("recipientDistrict")}
+              >
+                {districts.map((district) => (
+                  <option key={district.id} value={district.name}>
+                    {district.name}
+                  </option>
+                ))}
+              </Select>
             </div>
-            <TextInput
-              type="text"
-              id="hospitalName"
-              placeholder="Hospital name"
-              {...register("hospitalName")}
-              required
-            />
-          </div>
-          {/*full address */}
-          <div>
-            <div className="mb-2 block">
-              <Label htmlFor="fullAddress" value="Full Address" />
+            {/*recipient upazila */}
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="recipientUpazila" value="Recipient Upazila" />
+              </div>
+              <Select
+                id="recipientUpazila"
+                required
+                {...register("recipientUpazila")}
+              >
+                {upazilas.map((upazila) => (
+                  <option key={upazila.id} value={upazila.name}>
+                    {upazila.name}
+                  </option>
+                ))}
+              </Select>
             </div>
-            <TextInput
-              type="text"
-              id="fullAddress"
-              placeholder="Ex: Zahir Raihan Rd, Dhaka"
-              {...register("fullAddress")}
-              required
-            />
-          </div>
-          {/*donation date */}
-          <div>
-            <div className="mb-2 block">
-              <Label htmlFor="donationDate" value="Donation Date" />
+            {/*hospital name */}
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="hospitalName" value="Hospital name" />
+              </div>
+              <TextInput
+                type="text"
+                id="hospitalName"
+                placeholder="Hospital name"
+                {...register("hospitalName")}
+                required
+              />
             </div>
-            <TextInput
-              type="date"
-              id="donationDate"
-              placeholder=""
-              {...register("donationDate")}
-              required
-            />
-          </div>
-          {/*donation time */}
-          <div>
-            <div className="mb-2 block">
-              <Label htmlFor="donationTime" value="Donation Time" />
+            {/*full address */}
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="fullAddress" value="Full Address" />
+              </div>
+              <TextInput
+                type="text"
+                id="fullAddress"
+                placeholder="Ex: Zahir Raihan Rd, Dhaka"
+                {...register("fullAddress")}
+                required
+              />
             </div>
-            <TextInput
-              type="time"
-              id="donationTime"
-              placeholder=""
-              {...register("donationTime")}
-              required
-            />
-          </div>
-          {/*donation time */}
-          <div>
-            <div className="mb-2 block">
-              <Label htmlFor="requestMessage" value="Request Message" />
+            {/*donation date */}
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="donationDate" value="Donation Date" />
+              </div>
+              <TextInput
+                type="date"
+                id="donationDate"
+                placeholder=""
+                {...register("donationDate")}
+                required
+              />
             </div>
-            <Textarea
-              id="requestMessage"
-              placeholder="Write your message"
-              {...register("requestMessage")}
-              required
-              rows={4}
-            />
-          </div>
+            {/*donation time */}
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="donationTime" value="Donation Time" />
+              </div>
+              <TextInput
+                type="time"
+                id="donationTime"
+                placeholder=""
+                {...register("donationTime")}
+                required
+              />
+            </div>
+            {/*donation time */}
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="requestMessage" value="Request Message" />
+              </div>
+              <Textarea
+                id="requestMessage"
+                placeholder="Write your message"
+                {...register("requestMessage")}
+                required
+                rows={4}
+              />
+            </div>
 
-          <Button className="w-full" type="submit" gradientMonochrome="failure">
-            Submit Request{" "}
-            {btnLoading && (
-              <span className="ms-4">
-                <Spinner aria-label="Extra large spinner example" size="sm" />
-              </span>
-            )}
-          </Button>
-        </form>
-      </div>
+            <Button
+              className="w-full"
+              type="submit"
+              gradientMonochrome="failure"
+            >
+              Submit Request{" "}
+              {btnLoading && (
+                <span className="ms-4">
+                  <Spinner aria-label="Extra large spinner example" size="sm" />
+                </span>
+              )}
+            </Button>
+          </form>
+        </div>
+      )}
     </div>
   );
 };

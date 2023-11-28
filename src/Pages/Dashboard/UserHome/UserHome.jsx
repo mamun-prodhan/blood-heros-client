@@ -54,7 +54,9 @@ const UserHome = () => {
       )}
       {myDonationRequest.length > 0 && (
         <div className="mt-10">
-          <h3 className="text-center text-xl md:text-3xl ">Recent Donations</h3>
+          <h3 className="text-center text-xl md:text-3xl ">
+            Recent Donation Requests
+          </h3>
           <div className="overflow-x-auto mt-3 md:mt-6">
             <Table>
               <Table.Head>
@@ -147,9 +149,11 @@ const UserHome = () => {
             </Table>
           </div>
           <div className="mt-10">
-            <Button gradientMonochrome="failure" className="mx-auto">
-              View All
-            </Button>
+            <Link to="/dashboard/my-donation-request">
+              <Button gradientMonochrome="failure" className="mx-auto">
+                View All
+              </Button>
+            </Link>
           </div>
         </div>
       )}

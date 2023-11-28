@@ -176,11 +176,6 @@ const MyDonationRequest = () => {
               </Table.Body>
             </Table>
           </div>
-          <div className="mt-10">
-            <Button gradientMonochrome="failure" className="mx-auto">
-              View All
-            </Button>
-          </div>
         </div>
       )}
     </div>
