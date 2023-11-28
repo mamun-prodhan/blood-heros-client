@@ -4212,8 +4212,8 @@ const UpdateUserProfile = () => {
           <Button className="w-full" type="submit" gradientMonochrome="failure">
             Update{" "}
             {btnLoading && (
-              <span>
-                <Spinner aria-label="Extra large spinner example" size="xl" />
+              <span className="ms-4">
+                <Spinner aria-label="Extra large spinner example" size="sm" />
               </span>
             )}
           </Button>
