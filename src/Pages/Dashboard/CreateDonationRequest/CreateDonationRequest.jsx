@@ -15,7 +15,7 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 
 const CreateDonationRequest = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const [loggedInUser] = useProfile();
   const [btnLoading, setBtnLoading] = useState(false);
   const [districts] = useDistricts();
@@ -24,6 +24,7 @@ const CreateDonationRequest = () => {
 
   const onSubmit = async (data) => {
     setBtnLoading(true);
+    const currentDate = new Date();
     const donationRequestData = {
       requesterName: data.requesterName,
       requesterEmail: data.requesterEmail,
@@ -37,6 +38,7 @@ const CreateDonationRequest = () => {
       donationTime: data.donationTime,
       requestMessage: data.requestMessage,
       donationStatus: "pending",
+      createdAt: currentDate,
     };
     // post donation data to database
     try {
@@ -51,6 +53,7 @@ const CreateDonationRequest = () => {
           icon: "success",
         });
         setBtnLoading(false);
+        reset();
       }
     } catch (error) {
       console.log(error);
@@ -77,7 +80,7 @@ const CreateDonationRequest = () => {
             <TextInput
               type="text"
               id="requesterName"
-              defaultValue={loggedInUser?.name}
+              defaultValue={loggedInUser.name}
               placeholder="Requester name"
               {...register("requesterName")}
               required

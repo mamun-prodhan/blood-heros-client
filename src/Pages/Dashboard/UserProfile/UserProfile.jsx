@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 const UserProfile = () => {
   const [loggedInUser, refetch, isLoading] = useProfile();
-  console.log(loggedInUser);
 
   // useEffect(() => {
   //   refetch();

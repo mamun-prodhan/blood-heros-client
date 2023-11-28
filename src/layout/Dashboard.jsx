@@ -108,7 +108,7 @@ const Dashboard = () => {
       </div>
 
       {/* dashboard content */}
-      <div className="flex-1 p-10 bg-[#d4d2d2]">
+      <div className="flex-1 py-10 md:p-10  overflow-x-auto">
         <Outlet></Outlet>
       </div>
     </div>
