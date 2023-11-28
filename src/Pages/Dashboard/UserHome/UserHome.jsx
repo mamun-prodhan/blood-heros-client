@@ -121,7 +121,11 @@ const UserHome = () => {
                       </Button>
                     </Table.Cell>
                     <Table.Cell>
-                      <Button size="xs">View</Button>
+                      <Link
+                        to={`/dashboard/donation-request-details/${request._id}`}
+                      >
+                        <Button size="xs">View</Button>
+                      </Link>
                     </Table.Cell>
                     <Table.Cell>
                       {request.donationStatus === "inprogress" ? (
@@ -141,6 +145,11 @@ const UserHome = () => {
                 ))}
               </Table.Body>
             </Table>
+          </div>
+          <div className="mt-10">
+            <Button gradientMonochrome="failure" className="mx-auto">
+              View All
+            </Button>
           </div>
         </div>
       )}
