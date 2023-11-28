@@ -1,4 +1,3 @@
-import { useForm } from "react-hook-form";
 import useProfile from "../../../hooks/useProfile";
 import { useState } from "react";
 import useDistricts from "../../../hooks/useDistricts";
@@ -18,9 +17,7 @@ import Swal from "sweetalert2";
 
 const UpdateDonationRequest = () => {
   const { id } = useParams();
-  const { register, handleSubmit } = useForm();
   const [loggedInUser] = useProfile();
-  const [btnLoading, setBtnLoading] = useState(false);
   const [districts] = useDistricts();
   const [upazilas] = useUpazilas();
   const axiosPublic = useAxiosPublic();
@@ -37,22 +34,22 @@ const UpdateDonationRequest = () => {
     },
   });
 
-  console.log("from tn predata", preData);
+  // console.log("from tn predata", preData);
 
-  const onSubmit = async (data) => {
-    console.log("submit button clicked", data);
-    setBtnLoading(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const updatedData = {
-      recipientName: data.recipientName,
-      bloodGroup: data.bloodGroup,
-      recipientDistrict: data.recipientDistrict,
-      recipientUpazila: data.recipientUpazila,
-      hospitalName: data.hospitalName,
-      fullAddress: data.fullAddress,
-      donationDate: data.donationDate,
-      donationTime: data.donationTime,
-      requestMessage: data.requestMessage,
+      recipientName: e.target.recipientName.value,
+      bloodGroup: e.target.bloodGroup.value,
+      recipientDistrict: e.target.recipientDistrict.value,
+      recipientUpazila: e.target.recipientUpazila.value,
+      hospitalName: e.target.hospitalName.value,
+      fullAddress: e.target.fullAddress.value,
+      donationDate: e.target.donationDate.value,
+      donationTime: e.target.donationTime.value,
+      requestMessage: e.target.requestMessage.value,
     };
+    // console.log("testing updated data", updatedData);
     // update donation request data on database
     const updateRes = await axiosPublic.put(
       `/update-donation-request/${id}`,
@@ -67,7 +64,6 @@ const UpdateDonationRequest = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      setBtnLoading(false);
       refetch();
     }
   };
@@ -89,7 +85,7 @@ const UpdateDonationRequest = () => {
         </span>
       </h2>
       <div>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           {/*requester name */}
           <div>
             <div className="mb-2 block">
@@ -98,9 +94,9 @@ const UpdateDonationRequest = () => {
             <TextInput
               type="text"
               id="requesterName"
+              name="requesterName"
               defaultValue={loggedInUser.name}
               placeholder="Requester name"
-              {...register("requesterName")}
               required
               readOnly
             />
@@ -113,9 +109,9 @@ const UpdateDonationRequest = () => {
             <TextInput
               type="email"
               id="requesterEmail"
+              name="email"
               defaultValue={loggedInUser.email}
               placeholder="Requester email"
-              {...register("requesterEmail")}
               required
               readOnly
             />
@@ -128,8 +124,8 @@ const UpdateDonationRequest = () => {
             <TextInput
               type="text"
               id="recipientName"
+              name="recipientName"
               placeholder="Recipient name"
-              {...register("recipientName")}
               required
               defaultValue={preData.recipientName}
             />
@@ -141,8 +137,8 @@ const UpdateDonationRequest = () => {
             </div>
             <Select
               id="bloodGroup"
+              name="bloodGroup"
               required
-              {...register("bloodGroup")}
               defaultValue={preData.bloodGroup}
             >
               <option disabled value="default">
@@ -165,8 +161,8 @@ const UpdateDonationRequest = () => {
             </div>
             <Select
               id="recipientDistrict"
+              name="recipientDistrict"
               required
-              {...register("recipientDistrict")}
               defaultValue={preData.recipientDistrict}
             >
               {districts.map((district) => (
@@ -183,8 +179,8 @@ const UpdateDonationRequest = () => {
             </div>
             <Select
               id="recipientUpazila"
+              name="recipientUpazila"
               required
-              {...register("recipientUpazila")}
               defaultValue={preData.recipientUpazila}
             >
               {upazilas.map((upazila) => (
@@ -202,8 +198,8 @@ const UpdateDonationRequest = () => {
             <TextInput
               type="text"
               id="hospitalName"
+              name="hospitalName"
               placeholder="Hospital name"
-              {...register("hospitalName")}
               required
               defaultValue={preData.hospitalName}
             />
@@ -216,8 +212,8 @@ const UpdateDonationRequest = () => {
             <TextInput
               type="text"
               id="fullAddress"
+              name="fullAddress"
               placeholder="Ex: Zahir Raihan Rd, Dhaka"
-              {...register("fullAddress")}
               required
               defaultValue={preData.fullAddress}
             />
@@ -230,8 +226,7 @@ const UpdateDonationRequest = () => {
             <TextInput
               type="date"
               id="donationDate"
-              placeholder=""
-              {...register("donationDate")}
+              name="donationDate"
               required
               defaultValue={preData.donationDate}
             />
@@ -244,8 +239,7 @@ const UpdateDonationRequest = () => {
             <TextInput
               type="time"
               id="donationTime"
-              placeholder=""
-              {...register("donationTime")}
+              name="donationTime"
               required
               defaultValue={preData.donationTime}
             />
@@ -257,8 +251,8 @@ const UpdateDonationRequest = () => {
             </div>
             <Textarea
               id="requestMessage"
+              name="requestMessage"
               placeholder="Write your message"
-              {...register("requestMessage")}
               required
               defaultValue={preData.requestMessage}
               rows={4}
@@ -266,12 +260,7 @@ const UpdateDonationRequest = () => {
           </div>
 
           <Button className="w-full" type="submit" gradientMonochrome="failure">
-            Update Request{" "}
-            {btnLoading && (
-              <span className="ms-4">
-                <Spinner aria-label="Extra large spinner example" size="sm" />
-              </span>
-            )}
+            Update Request
           </Button>
         </form>
       </div>

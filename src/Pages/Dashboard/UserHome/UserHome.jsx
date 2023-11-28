@@ -2,11 +2,41 @@ import { Badge, Button, Dropdown, Spinner, Table } from "flowbite-react";
 import useMyDonationRequest from "../../../hooks/useMyDonationRequest";
 import useProfile from "../../../hooks/useProfile";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const UserHome = () => {
   const [loggedInUser] = useProfile();
-  const [myDonationRequest] = useMyDonationRequest();
+  const [myDonationRequest, refetch] = useMyDonationRequest();
+  const axiosPublic = useAxiosPublic();
   console.log(myDonationRequest);
+
+  // handle delete request
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosPublic.delete(`/donation-data/${id}`).then((res) => {
+          console.log("delete response", res.data);
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your request has been deleted.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
 
   return (
     <div>
@@ -82,7 +112,11 @@ const UserHome = () => {
                       </Link>
                     </Table.Cell>
                     <Table.Cell>
-                      <Button gradientMonochrome="failure" size="xs">
+                      <Button
+                        onClick={() => handleDelete(request._id)}
+                        gradientMonochrome="failure"
+                        size="xs"
+                      >
                         Delete
                       </Button>
                     </Table.Cell>
