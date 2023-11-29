@@ -1,56 +1,104 @@
 import { Button } from "flowbite-react";
 import { FaHome } from "react-icons/fa";
-import { FaUser } from "react-icons/fa6";
+import { FaBlog, FaUser, FaUsers } from "react-icons/fa6";
 import { BiSolidDonateBlood } from "react-icons/bi";
 import { IoIosCreate } from "react-icons/io";
 import { NavLink, Outlet } from "react-router-dom";
 import { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import useProfile from "../hooks/useProfile";
 
 const Dashboard = () => {
   let [open, setOpen] = useState(false);
+  const [loggedInUser] = useProfile();
+  // ToDo: get isAdmin value from the database
+  const role = loggedInUser.role;
   return (
     <div className="flex max-w-7xl mx-auto">
       {/* dashboard side bar */}
       <div className="w-64 min-h-screen bg-[#ffb8b0] hidden md:block">
         <ul className="menu px-4 mt-10 space-y-4">
-          <li>
-            <NavLink to="/dashboard/user-home">
-              <Button className="w-full" gradientMonochrome="failure">
-                <FaHome className="mr-2"></FaHome>User Home
-              </Button>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/user-profile">
-              <Button className="w-full" gradientMonochrome="failure">
-                <FaUser className="mr-2"></FaUser>User Profile
-              </Button>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/my-donation-request">
-              <Button className="w-full" gradientMonochrome="failure">
-                <BiSolidDonateBlood className="mr-2"></BiSolidDonateBlood>My
-                Donation Request
-              </Button>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/create-donation-request">
-              <Button className="w-full" gradientMonochrome="failure">
-                <IoIosCreate className="mr-2"></IoIosCreate>Create Donation
-                Request
-              </Button>
-            </NavLink>
-          </li>
+          {role === "donor" && (
+            <>
+              <li>
+                <NavLink to="/dashboard/user-home">
+                  <Button className="w-full" gradientMonochrome="failure">
+                    <FaHome className="mr-2"></FaHome>User Home
+                  </Button>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/user-profile">
+                  <Button className="w-full" gradientMonochrome="failure">
+                    <FaUser className="mr-2"></FaUser>User Profile
+                  </Button>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/my-donation-request">
+                  <Button className="w-full" gradientMonochrome="failure">
+                    <BiSolidDonateBlood className="mr-2"></BiSolidDonateBlood>My
+                    Donation Request
+                  </Button>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/create-donation-request">
+                  <Button className="w-full" gradientMonochrome="failure">
+                    <IoIosCreate className="mr-2"></IoIosCreate>Create Donation
+                    Request
+                  </Button>
+                </NavLink>
+              </li>
+            </>
+          )}
+          {role === "admin" && (
+            <>
+              <li>
+                <NavLink to="/dashboard/admin-home">
+                  <Button className="w-full" gradientMonochrome="failure">
+                    <FaHome className="mr-2"></FaHome>Admin Home
+                  </Button>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/user-profile">
+                  <Button className="w-full" gradientMonochrome="failure">
+                    <FaUser className="mr-2"></FaUser>User Profile
+                  </Button>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/all-users">
+                  <Button className="w-full" gradientMonochrome="failure">
+                    <FaUsers className="mr-2"></FaUsers>All Users
+                  </Button>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/all-donation-request">
+                  <Button className="w-full" gradientMonochrome="failure">
+                    <IoIosCreate className="mr-2"></IoIosCreate>All Donation
+                    Request
+                  </Button>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/content-management">
+                  <Button className="w-full" gradientMonochrome="failure">
+                    <FaBlog className="mr-2"></FaBlog>Content Management
+                  </Button>
+                </NavLink>
+              </li>
+            </>
+          )}
           <span>
             <hr className="my-10"></hr>
           </span>
           <li>
             <NavLink to="/">
               <Button className="w-full" gradientMonochrome="failure">
-                <FaHome className="mr-2"></FaHome>User Home
+                <FaHome className="mr-2"></FaHome>Back To Home
               </Button>
             </NavLink>
           </li>

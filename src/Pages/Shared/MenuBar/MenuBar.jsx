@@ -6,10 +6,12 @@ import { useState } from "react";
 import "./MenuBar.css";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
+import useProfile from "../../../hooks/useProfile";
 
 const MenuBar = () => {
   let [open, setOpen] = useState(false);
   const { user, logOut } = useAuth();
+  const [loggedInUser] = useProfile();
   let navLinks = (
     <>
       <li className="md:ml-4 text-xl md:my-0 my-7">
@@ -45,12 +47,22 @@ const MenuBar = () => {
         </NavLink>
       </li>
       <li className="md:ml-2 text-xl md:my-0 mb-7">
-        <NavLink
-          to="/dashboard/user-home"
-          className="text-gray-800 px-4 py-2 rounded-md hover:bg-red-300 duration-500"
-        >
-          Dashboard
-        </NavLink>
+        {loggedInUser.role === "donor" && (
+          <NavLink
+            to="/dashboard/user-home"
+            className="text-gray-800 px-4 py-2 rounded-md hover:bg-red-300 duration-500"
+          >
+            Dashboard
+          </NavLink>
+        )}
+        {loggedInUser.role === "admin" && (
+          <NavLink
+            to="/dashboard/admin-home"
+            className="text-gray-800 px-4 py-2 rounded-md hover:bg-red-300 duration-500"
+          >
+            Dashboard
+          </NavLink>
+        )}
       </li>
     </>
   );

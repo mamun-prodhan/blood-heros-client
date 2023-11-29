@@ -14,6 +14,10 @@ import CreateDonationRequest from "../Pages/Dashboard/CreateDonationRequest/Crea
 import UpdateUserProfile from "../Pages/Dashboard/UpdateUserProfile/UpdateUserProfile";
 import UpdateDonationRequest from "../Pages/Dashboard/UpdateDonationRequest/UpdateDonationRequest";
 import DonationDetails from "../Pages/Dashboard/DonationDetails/DonationDetails";
+import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import AllDonationRequest from "../Pages/Dashboard/AllDonationRequest/AllDonationRequest";
+import ContentManagement from "../Pages/Dashboard/ContentManagement/ContentManagement";
 
 const router = createBrowserRouter([
   {
@@ -49,12 +53,17 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "user-home",
         element: <UserHome></UserHome>,
       },
+
       {
         path: "user-profile",
         element: <UserProfile></UserProfile>,
@@ -78,6 +87,23 @@ const router = createBrowserRouter([
       {
         path: "donation-request-details/:id",
         element: <DonationDetails></DonationDetails>,
+      },
+      // admin routes
+      {
+        path: "admin-home",
+        element: <AdminHome></AdminHome>,
+      },
+      {
+        path: "all-users",
+        element: <AllUsers></AllUsers>,
+      },
+      {
+        path: "all-donation-request",
+        element: <AllDonationRequest></AllDonationRequest>,
+      },
+      {
+        path: "content-management",
+        element: <ContentManagement></ContentManagement>,
       },
     ],
   },
