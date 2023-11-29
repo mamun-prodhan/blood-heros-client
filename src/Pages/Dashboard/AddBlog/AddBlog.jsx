@@ -93,7 +93,9 @@ const AddBlog = () => {
           {/* end blog title */}
           {/* jodit react */}
           <div>
-            <p className="text-red-600 text-bold">{error}</p>
+            <p className="font-medium text-sm text-[#111827]">
+              Write your content here
+            </p>
             <JoditEditor
               ref={editor}
               required
@@ -101,7 +103,8 @@ const AddBlog = () => {
               onChange={(newContent) => setContent(newContent)}
             />
           </div>
-          <Button type="submit">Add Blog</Button>
+          <p className="text-red-600 text-bold">{error}</p>
+          <Button type="submit">Create Blog</Button>
         </form>
         {/* {HTMLReactParser(content)} */}
       </div>
