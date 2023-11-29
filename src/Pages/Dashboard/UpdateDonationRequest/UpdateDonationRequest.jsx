@@ -1,5 +1,3 @@
-import useProfile from "../../../hooks/useProfile";
-import { useState } from "react";
 import useDistricts from "../../../hooks/useDistricts";
 import useUpazilas from "../../../hooks/useUpazilas";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
@@ -17,7 +15,6 @@ import Swal from "sweetalert2";
 
 const UpdateDonationRequest = () => {
   const { id } = useParams();
-  const [loggedInUser] = useProfile();
   const [districts] = useDistricts();
   const [upazilas] = useUpazilas();
   const axiosPublic = useAxiosPublic();
@@ -95,7 +92,7 @@ const UpdateDonationRequest = () => {
               type="text"
               id="requesterName"
               name="requesterName"
-              defaultValue={loggedInUser.name}
+              defaultValue={preData.requesterName}
               placeholder="Requester name"
               required
               readOnly
@@ -110,7 +107,7 @@ const UpdateDonationRequest = () => {
               type="email"
               id="requesterEmail"
               name="email"
-              defaultValue={loggedInUser.email}
+              defaultValue={preData.requesterEmail}
               placeholder="Requester email"
               required
               readOnly
@@ -163,7 +160,7 @@ const UpdateDonationRequest = () => {
               id="recipientDistrict"
               name="recipientDistrict"
               required
-              defaultValue={preData.recipientDistrict}
+              defaultValue={preData?.recipientDistrict}
             >
               {districts.map((district) => (
                 <option key={district.id} value={district.name}>

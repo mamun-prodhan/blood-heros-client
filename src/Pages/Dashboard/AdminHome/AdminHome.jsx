@@ -21,7 +21,7 @@ const AdminHome = () => {
         </h3>
       </div>
       {/* data */}
-      <div className="flex items-center flex-col md:flex-row gap-5 md:gap-10 mt-10 md:mt-16  mx-auto">
+      <div className="flex items-center justify-center flex-col md:flex-row gap-5 md:gap-10 mt-10 md:mt-16  mx-auto">
         <div className="flex flex-col md:flex-row gap-5 md:gap-10">
           {/* total users */}
           <div className="flex items-center gap-5 bg-gradient-to-r from-red-200 to-red-400 p-4 rounded-md">

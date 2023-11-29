@@ -175,7 +175,7 @@ const AllUsers = () => {
                           gradientMonochrome="success"
                           size="xs"
                         >
-                          Active
+                          Unblock
                         </Button>
                       )}
                     </Table.Cell>

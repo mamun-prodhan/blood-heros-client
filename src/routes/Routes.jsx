@@ -18,6 +18,7 @@ import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import AllDonationRequest from "../Pages/Dashboard/AllDonationRequest/AllDonationRequest";
 import ContentManagement from "../Pages/Dashboard/ContentManagement/ContentManagement";
+import AddBlog from "../Pages/Dashboard/AddBlog/AddBlog";
 
 const router = createBrowserRouter([
   {
@@ -104,6 +105,10 @@ const router = createBrowserRouter([
       {
         path: "content-management",
         element: <ContentManagement></ContentManagement>,
+      },
+      {
+        path: "content-management/add-blog",
+        element: <AddBlog></AddBlog>,
       },
     ],
   },
