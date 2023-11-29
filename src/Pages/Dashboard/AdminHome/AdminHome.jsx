@@ -1,4 +1,5 @@
-import { Card } from "flowbite-react";
+import { BiSolidDonateBlood } from "react-icons/bi";
+import { RiRefund2Line } from "react-icons/ri";
 import useAllDonationRequest from "../../../hooks/useAllDonationRequest";
 import useProfile from "../../../hooks/useProfile";
 import { FaUsers } from "react-icons/fa";
@@ -35,7 +36,7 @@ const AdminHome = () => {
           {/* total donation request */}
           <div className="flex items-center gap-5 bg-gradient-to-r from-red-200 to-red-400 p-4 rounded-md">
             <div>
-              <FaUsers className="text-5xl text-[#ff5441]"></FaUsers>
+              <BiSolidDonateBlood className="text-5xl text-[#ff5441]"></BiSolidDonateBlood>
             </div>
             <div>
               <h2 className="text-xl">Total Donation Request</h2>
@@ -45,7 +46,7 @@ const AdminHome = () => {
           {/* total users */}
           <div className="flex items-center gap-5 bg-gradient-to-r from-red-200 to-red-400 p-4 rounded-md">
             <div>
-              <FaUsers className="text-5xl text-[#ff5441]"></FaUsers>
+              <RiRefund2Line className="text-5xl text-[#ff5441]"></RiRefund2Line>
             </div>
             <div>
               <h2 className="text-xl">Total Fundings</h2>
