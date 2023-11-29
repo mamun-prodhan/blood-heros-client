@@ -32,6 +32,39 @@ const AllUsers = () => {
     setLoadedData(loadedFilterData);
   }, [allUsers, selectedCategory]);
 
+  // handle active user
+  const handleActiveUser = (singleUser) => {
+    axiosSecure.patch(`/active-user/${singleUser._id}`).then((res) => {
+      console.log("active response", res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `${singleUser.name} is Active Now`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
+  // handle block user
+  const handleBlockedUser = (singleUser) => {
+    axiosSecure.patch(`/blocked-user/${singleUser._id}`).then((res) => {
+      console.log("blocked response", res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `${singleUser.name} is Blocked Now`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
+
   // handle make admin
   const handleMakeAdmin = (singleUser) => {
     axiosSecure.patch(`/users/admin/${singleUser._id}`).then((res) => {
@@ -48,6 +81,7 @@ const AllUsers = () => {
       }
     });
   };
+  // handle make Volunteer
   const handleMakeVolunteer = (singleUser) => {
     axiosSecure.patch(`/users/volunteer/${singleUser._id}`).then((res) => {
       console.log("make volunteer response", res.data);
@@ -128,16 +162,16 @@ const AllUsers = () => {
                     <Table.Cell>
                       {singleUser.status === "active" && (
                         <Button
-                          onClick={() => handleDelete(singleUser._id)}
+                          onClick={() => handleBlockedUser(singleUser)}
                           gradientMonochrome="failure"
                           size="xs"
                         >
-                          Block
+                          Block Now
                         </Button>
                       )}
                       {singleUser.status === "blocked" && (
                         <Button
-                          onClick={() => handleDelete(singleUser._id)}
+                          onClick={() => handleActiveUser(singleUser)}
                           gradientMonochrome="success"
                           size="xs"
                         >
