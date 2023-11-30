@@ -1,0 +1,23 @@
+import { Button, Card } from "flowbite-react";
+import HTMLReactParser from "html-react-parser";
+
+const BlogsCard = ({ blog }) => {
+  const { title, thumbnail, content } = blog;
+
+  return (
+    <Card
+      className="max-w-full my-10"
+      imgAlt="Meaningful alt text for an image that is not purely decorative"
+      imgSrc={thumbnail}
+    >
+      <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        {title}
+      </h5>
+      <p className="font-normal text-gray-700 dark:text-gray-400">
+        {HTMLReactParser(content)}
+      </p>
+    </Card>
+  );
+};
+
+export default BlogsCard;

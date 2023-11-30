@@ -21,6 +21,7 @@ import ContentManagement from "../Pages/Dashboard/ContentManagement/ContentManag
 import AddBlog from "../Pages/Dashboard/AddBlog/AddBlog";
 import SearchPage from "../Pages/SearchPage/SearchPage";
 import DonationRequest from "../Pages/DonationRequest/DonationRequest";
+import Fundings from "../Pages/Fundings/Fundings";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: "/search",
         element: <SearchPage></SearchPage>,
+      },
+      {
+        path: "/fundings",
+        element: <Fundings></Fundings>,
       },
       {
         path: "/blogs",
