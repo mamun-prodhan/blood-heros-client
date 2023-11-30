@@ -1,28 +1,40 @@
-import { Footer } from "flowbite-react";
 import logo from "../../../assets/logo.png";
+import { Link } from "react-router-dom";
 
 const Footerr = () => {
   return (
-    <Footer container>
-      <div className="w-full text-center">
-        <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
-          <Footer.Brand
-            href="https://www.youtube.com/"
-            src={logo}
-            alt="bloodhero"
-            name="BloodHero"
-          />
-          <Footer.LinkGroup>
-            <Footer.Link href="#">About</Footer.Link>
-            <Footer.Link href="#">Privacy Policy</Footer.Link>
-            <Footer.Link href="#">Licensing</Footer.Link>
-            <Footer.Link href="#">Contact</Footer.Link>
-          </Footer.LinkGroup>
+    <footer className="w-full px-4 md:px-20 pt-10 pb-5 bg-[#FDE8E8]">
+      <div className="flex gap-5 flex-col md:flex-row items-center justify-between">
+        <div className="flex flex-col md:flex-row items-center gap-5">
+          <img src={logo} alt="" />{" "}
+          <p className="text-xl md:text-2xl font-bold text-[#FF6251]">
+            Blood Heros
+          </p>
         </div>
-        <Footer.Divider />
-        <Footer.Copyright href="#" by="Blood Hero" year={2023} />
+        <div className="flex flex-col md:flex-row gap-1 md:gap-5 text-center md:text-start text-sm">
+          <div>
+            <Link to="/fundings">Fundings</Link>
+          </div>
+          <div>
+            <Link to="/donation-request">Donation Request</Link>
+          </div>
+          <div>
+            <Link to="/blogs">Read Blogs</Link>
+          </div>
+          <div>
+            {" "}
+            <Link to="/register">Join</Link>
+          </div>
+        </div>
       </div>
-    </Footer>
+      <hr className="h-0.5 my-5 bg-red-800" />
+      <div>
+        <p className="text-center text-xs">
+          Copyright © {new Date().getFullYear()} - All right reserved by Blood
+          Heros
+        </p>
+      </div>
+    </footer>
   );
 };
 
