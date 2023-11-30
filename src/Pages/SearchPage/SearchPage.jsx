@@ -4,6 +4,7 @@ import useUpazilas from "../../hooks/useUpazilas";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 const SearchPage = () => {
   const [districts] = useDistricts();
@@ -29,6 +30,24 @@ const SearchPage = () => {
       `/search?bloodGroup=${bloodGroup}&district=${district}&upazila=${upazila}`
     );
     console.log("search result", result.data);
+    if (!result.data.length) {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: `No data found`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+    if (result.data.length > 0) {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: `Match data found`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
     setResult(result.data);
   };
 
