@@ -2,15 +2,30 @@ import { Button, Label, Select } from "flowbite-react";
 import useDistricts from "../../hooks/useDistricts";
 import useUpazilas from "../../hooks/useUpazilas";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Swal from "sweetalert2";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 const SearchPage = () => {
   const [districts] = useDistricts();
   const [upazilas] = useUpazilas();
   const axiosPublic = useAxiosPublic();
   const [result, setResult] = useState([]);
+  const pdfRef = useRef();
+  const downloadPDF = () => {
+    const input = pdfRef.current;
+
+    html2canvas(input).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF("p", "mm", "a4");
+      const imgWidth = pdf.internal.pageSize.getWidth();
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+      pdf.save("search_results.pdf");
+    });
+  };
 
   // console.log("from tn predata", preData);
 
@@ -115,7 +130,7 @@ const SearchPage = () => {
         </form>
       </div>
       {/* search result */}
-      <div>
+      <div ref={pdfRef}>
         {result.length > 0 && (
           <div className="mt-10">
             <p className="text-xl font-bold text-center mb-5">
@@ -131,6 +146,9 @@ const SearchPage = () => {
                 </p>
               </div>
             ))}
+            <Button onClick={downloadPDF} className="mx-auto mt-3">
+              Download PDF
+            </Button>
           </div>
         )}
       </div>
