@@ -5,7 +5,7 @@ import BlogsCard from "./BlogsCard";
 
 const Blogs = () => {
   const [publishedBlogs, refetch, isPending] = usePublishedBlogs();
-  console.log("published blogs are", publishedBlogs);
+  // console.log("published blogs are", publishedBlogs);
 
   if (isPending) {
     return <h2 className="text-center text-xl font-bold my-20">Loading</h2>;

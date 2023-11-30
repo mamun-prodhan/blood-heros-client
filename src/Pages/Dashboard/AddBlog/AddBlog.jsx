@@ -21,13 +21,13 @@ const AddBlog = () => {
     if (!content) {
       return setError("Content Field is Required");
     }
-    console.log("form data", data);
+    // console.log("form data", data);
     // image upload to imgbb and get the url
     const imageFile = { image: data.thumbnail[0] };
     const res = await axiosPublic.post(image_hosting_api, imageFile, {
       headers: { "Content-Type": "multipart/form-data" },
     });
-    console.log(res);
+    // console.log(res);
     if (res.data.success) {
       // now send the menu item data to the server with the image url
       const blogs = {
@@ -36,10 +36,10 @@ const AddBlog = () => {
         content: content,
         status: "draft",
       };
-      console.log(blogs);
+      // console.log(blogs);
       // post user data to database
       const postBlogsRes = await axiosPublic.post("/blogs", blogs);
-      console.log(postBlogsRes.data);
+      // console.log(postBlogsRes.data);
       if (postBlogsRes.data.insertedId) {
         reset();
         setContent("");

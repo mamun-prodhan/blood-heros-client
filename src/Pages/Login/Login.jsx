@@ -9,7 +9,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const location = useLocation();
-  console.log(location.state);
+  // console.log(location.state);
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
@@ -17,12 +17,12 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    // console.log(email, password);
     setError("");
     setSuccess("");
     signIn(email, password)
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
         setSuccess("Successfully logged in");
         navigate(location?.state ? location.state : "/");
         Swal.fire({

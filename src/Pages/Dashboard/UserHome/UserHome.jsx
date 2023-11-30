@@ -16,7 +16,7 @@ const UserHome = () => {
   // handle done
   const handleDone = (id) => {
     axiosSecure.patch(`/donation/done/${id}`).then((res) => {
-      console.log("make done response", res.data);
+      // console.log("make done response", res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({
@@ -32,7 +32,7 @@ const UserHome = () => {
   // handle canceled
   const handleCanceled = (id) => {
     axiosSecure.patch(`/donation/canceled/${id}`).then((res) => {
-      console.log("make canceled response", res.data);
+      // console.log("make canceled response", res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({
@@ -59,7 +59,7 @@ const UserHome = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosPublic.delete(`/donation-data/${id}`).then((res) => {
-          console.log("delete response", res.data);
+          // console.log("delete response", res.data);
           if (res.data.deletedCount > 0) {
             refetch();
             Swal.fire({

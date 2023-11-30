@@ -23,7 +23,7 @@ const DonationDetails = () => {
       return res.data;
     },
   });
-  console.log(details);
+  // console.log(details);
   // handleDonate
   const handleDonate = async (e) => {
     e.preventDefault();
@@ -35,7 +35,7 @@ const DonationDetails = () => {
       donationStatus: "inprogress",
     };
     const result = await axiosSecure.put(`/handle-donate/${id}`, donorInfo);
-    console.log(result.data);
+    // console.log(result.data);
     if (result.data.modifiedCount > 0) {
       refetch();
       Swal.fire({

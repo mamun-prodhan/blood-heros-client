@@ -19,7 +19,7 @@ const ContentManagement = () => {
   const handleFilter = (e) => {
     const filterValue = e.target.value;
     setSelectedCategory(filterValue);
-    console.log("handle filter clicked", filterValue);
+    // console.log("handle filter clicked", filterValue);
   };
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const ContentManagement = () => {
   // handle publish blog
   const handlePublish = (singleBlog) => {
     axiosSecure.patch(`/publish-blog/${singleBlog._id}`).then((res) => {
-      console.log("publish response", res.data);
+      // console.log("publish response", res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({
@@ -48,7 +48,7 @@ const ContentManagement = () => {
   // handle block user
   const handleUnpublish = (singleUser) => {
     axiosSecure.patch(`/unpublish-blog/${singleUser._id}`).then((res) => {
-      console.log("unpublish response", res.data);
+      // console.log("unpublish response", res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({
@@ -63,7 +63,7 @@ const ContentManagement = () => {
   };
 
   const handleDelete = (id) => {
-    console.log(id);
+    // console.log(id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -75,7 +75,7 @@ const ContentManagement = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure.delete(`/all-blogs/${id}`).then((res) => {
-          console.log("delete response", res.data);
+          // console.log("delete response", res.data);
           if (res.data.deletedCount > 0) {
             refetch();
             Swal.fire({

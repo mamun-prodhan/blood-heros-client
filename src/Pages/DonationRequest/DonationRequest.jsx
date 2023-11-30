@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const DonationRequest = () => {
   const [pendingRequest, refetch, isPending] = usePendingRequest();
-  console.log(pendingRequest);
+  // console.log(pendingRequest);
 
   return (
     <div data-aos="fade-up" data-aos-duration="1500">

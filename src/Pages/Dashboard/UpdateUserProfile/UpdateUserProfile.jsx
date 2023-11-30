@@ -26,13 +26,13 @@ const UpdateUserProfile = () => {
   const [upazilas] = useUpazilas();
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
-  console.log(loggedInUser);
+  // console.log(loggedInUser);
 
-  console.log("dististircs data", districts);
+  // console.log("dististircs data", districts);
 
   const onSubmit = async (data) => {
     setBtnLoading(true);
-    console.log("form data", data);
+    // console.log("form data", data);
     // image upload to imgbb and the get an url
     const imageFile = { image: data.photo[0] };
     const res = await axiosPublic.post(image_hosting_api, imageFile, {

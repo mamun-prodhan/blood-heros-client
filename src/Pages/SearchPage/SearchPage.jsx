@@ -44,7 +44,7 @@ const SearchPage = () => {
     const result = await axiosPublic.get(
       `/search?bloodGroup=${bloodGroup}&district=${district}&upazila=${upazila}`
     );
-    console.log("search result", result.data);
+    // console.log("search result", result.data);
     if (!result.data.length) {
       Swal.fire({
         position: "center",

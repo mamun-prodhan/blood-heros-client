@@ -28,13 +28,13 @@ const Register = () => {
 
   // get and submit form data
   const onSubmit = async (data) => {
-    console.log(data);
+    // console.log(data);
     // image upload to imgbb and get the url
     const imageFile = { image: data.photo[0] };
     const res = await axiosPublic.post(image_hosting_api, imageFile, {
       headers: { "Content-Type": "multipart/form-data" },
     });
-    console.log(res);
+    // console.log(res);
     if (res.data.success) {
       // now send the menu item data to the server with the image url
       const users = {
@@ -50,11 +50,11 @@ const Register = () => {
       };
       // post user data to database
       const userRes = await axiosPublic.post("/users", users);
-      console.log(userRes.data);
+      // console.log(userRes.data);
       if (userRes.data.insertedId) {
         createUser(data.email, data.password).then((result) => {
           const loggedUser = result.user;
-          console.log(loggedUser);
+          // console.log(loggedUser);
           reset();
           Swal.fire({
             title: "Sign up Successfull",

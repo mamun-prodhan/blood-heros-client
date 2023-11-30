@@ -11,13 +11,13 @@ const MyDonationRequest = () => {
   const axiosSecure = useAxiosSecure();
   const [loadedData, setLoadedData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("pending");
-  console.log("selected category");
+  // console.log("selected category");
 
   //   filter onclick
   const handleFilter = (e) => {
     const filterValue = e.target.value;
     setSelectedCategory(filterValue);
-    console.log("handle filter clicked", filterValue);
+    // console.log("handle filter clicked", filterValue);
   };
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const MyDonationRequest = () => {
   // handle done
   const handleDone = (id) => {
     axiosSecure.patch(`/donation/done/${id}`).then((res) => {
-      console.log("make done response", res.data);
+      // console.log("make done response", res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({
@@ -46,7 +46,7 @@ const MyDonationRequest = () => {
   // handle canceled
   const handleCanceled = (id) => {
     axiosSecure.patch(`/donation/canceled/${id}`).then((res) => {
-      console.log("make canceled response", res.data);
+      // console.log("make canceled response", res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({
@@ -73,7 +73,7 @@ const MyDonationRequest = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosPublic.delete(`/donation-data/${id}`).then((res) => {
-          console.log("delete response", res.data);
+          // console.log("delete response", res.data);
           if (res.data.deletedCount > 0) {
             refetch();
             Swal.fire({

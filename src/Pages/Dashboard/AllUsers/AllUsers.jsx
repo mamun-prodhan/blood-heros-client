@@ -22,7 +22,7 @@ const AllUsers = () => {
   const handleFilter = (e) => {
     const filterValue = e.target.value;
     setSelectedCategory(filterValue);
-    console.log("handle filter clicked", filterValue);
+    // console.log("handle filter clicked", filterValue);
   };
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const AllUsers = () => {
   // handle active user
   const handleActiveUser = (singleUser) => {
     axiosSecure.patch(`/active-user/${singleUser._id}`).then((res) => {
-      console.log("active response", res.data);
+      // console.log("active response", res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({
@@ -51,7 +51,7 @@ const AllUsers = () => {
   // handle block user
   const handleBlockedUser = (singleUser) => {
     axiosSecure.patch(`/blocked-user/${singleUser._id}`).then((res) => {
-      console.log("blocked response", res.data);
+      // console.log("blocked response", res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({
@@ -68,7 +68,7 @@ const AllUsers = () => {
   // handle make admin
   const handleMakeAdmin = (singleUser) => {
     axiosSecure.patch(`/users/admin/${singleUser._id}`).then((res) => {
-      console.log("make admin response", res.data);
+      // console.log("make admin response", res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({
@@ -84,7 +84,7 @@ const AllUsers = () => {
   // handle make Volunteer
   const handleMakeVolunteer = (singleUser) => {
     axiosSecure.patch(`/users/volunteer/${singleUser._id}`).then((res) => {
-      console.log("make volunteer response", res.data);
+      // console.log("make volunteer response", res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({

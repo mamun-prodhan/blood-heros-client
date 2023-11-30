@@ -52,7 +52,7 @@ const UpdateDonationRequest = () => {
       `/update-donation-request/${id}`,
       updatedData
     );
-    console.log(updateRes.data);
+    // console.log(updateRes.data);
     if (updateRes.data.modifiedCount > 0) {
       Swal.fire({
         position: "center",
