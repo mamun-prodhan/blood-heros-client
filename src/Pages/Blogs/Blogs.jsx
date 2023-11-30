@@ -12,7 +12,7 @@ const Blogs = () => {
   }
 
   return (
-    <div className="p-4">
+    <div className="p-4" data-aos="fade-up" data-aos-duration="1500">
       <h3 className="text-xl text-center md:text-4xl mt-6 md:mt-10">
         Our <span className="text-bold text-[#FF6251]">Blogs</span>
       </h3>

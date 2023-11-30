@@ -14,7 +14,11 @@ const Dashboard = () => {
   // ToDo: get isAdmin value from the database
   const role = loggedInUser.role;
   return (
-    <div className="flex max-w-full mx-auto">
+    <div
+      data-aos="fade-up"
+      data-aos-duration="1500"
+      className="flex max-w-full mx-auto"
+    >
       {/* dashboard side bar */}
       <div className="w-64 min-h-screen bg-[#ffb8b0] hidden md:block">
         <ul className="menu px-4 mt-10 space-y-4">

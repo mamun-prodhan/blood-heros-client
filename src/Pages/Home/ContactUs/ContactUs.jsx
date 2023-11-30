@@ -15,7 +15,11 @@ const ContactUs = () => {
     });
   };
   return (
-    <div className="mt-10 md:mt-20 mb-20">
+    <div
+      data-aos="fade-down"
+      data-aos-duration="1500"
+      className="mt-10 md:mt-20 mb-20"
+    >
       <h2 className="mb-10 md:mb-16 text-center">
         <span className="text-2xl md:text-3xl lg:text-4xl uppercase font-thin text-[#FF6251] ">
           Contact

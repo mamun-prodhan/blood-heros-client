@@ -4,7 +4,7 @@ import { GiBrokenHeartZone } from "react-icons/gi";
 
 const AboutUs = () => {
   return (
-    <div className="mt-16">
+    <div data-aos="fade-down" data-aos-duration="1500" className="mt-16">
       <h2 className="mb-5 md:mb-10 text-center">
         <span className="text-2xl md:text-3xl lg:text-4xl uppercase font-thin text-[#FF6251] ">
           Why should you{" "}

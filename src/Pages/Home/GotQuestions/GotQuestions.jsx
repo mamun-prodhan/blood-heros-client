@@ -2,7 +2,7 @@ import { Accordion } from "flowbite-react";
 
 const GotQuestions = () => {
   return (
-    <div className="mt-10 md:mt-16">
+    <div data-aos="fade-up" data-aos-duration="1500" className="mt-10 md:mt-16">
       <h2 className=" mb-10 text-center">
         <span className="text-2xl md:text-3xl lg:text-4xl uppercase font-bold pb-2 border-b-4 border-[#FF6251] text-[#FF6251] ">
           Got Questions ?
@@ -21,20 +21,13 @@ const GotQuestions = () => {
               </Accordion.Title>
               <Accordion.Content>
                 <p className="mb-2 text-gray-500 dark:text-gray-400">
-                  Flowbite is an open-source library of interactive components
-                  built on top of Tailwind CSS including buttons, dropdowns,
-                  modals, navbars, and more.
-                </p>
-                <p className="text-gray-500 dark:text-gray-400">
-                  Check out this guide to learn how to&nbsp;
-                  <a
-                    href="https://flowbite.com/docs/getting-started/introduction/"
-                    className="text-cyan-600 hover:underline dark:text-cyan-500"
-                  >
-                    get started&nbsp;
-                  </a>
-                  and start developing websites even faster with components on
-                  top of Tailwind CSS.
+                  Blood Heroes are the extraordinary individuals who embody the
+                  spirit of compassion and generosity by donating blood to save
+                  lives. At [Your Organization/Website Name], we celebrate our
+                  Blood Heroes, recognizing the selfless contributions that make
+                  a significant impact on the well-being of others. Join our
+                  community of Blood Heroes and be a part of something truly
+                  heroic the gift of life through blood donation.
                 </p>
               </Accordion.Content>
             </Accordion.Panel>
@@ -46,20 +39,9 @@ const GotQuestions = () => {
               </Accordion.Title>
               <Accordion.Content>
                 <p className="mb-2 text-gray-500 dark:text-gray-400">
-                  Flowbite is an open-source library of interactive components
-                  built on top of Tailwind CSS including buttons, dropdowns,
-                  modals, navbars, and more.
-                </p>
-                <p className="text-gray-500 dark:text-gray-400">
-                  Check out this guide to learn how to&nbsp;
-                  <a
-                    href="https://flowbite.com/docs/getting-started/introduction/"
-                    className="text-cyan-600 hover:underline dark:text-cyan-500"
-                  >
-                    get started&nbsp;
-                  </a>
-                  and start developing websites even faster with components on
-                  top of Tailwind CSS.
+                  Ensure you meet the eligibility criteria for blood donation,
+                  including age, weight, and overall health. Common requirements
+                  may vary, so check with your local blood donation center.
                 </p>
               </Accordion.Content>
             </Accordion.Panel>
@@ -73,20 +55,10 @@ const GotQuestions = () => {
               </Accordion.Title>
               <Accordion.Content>
                 <p className="mb-2 text-gray-500 dark:text-gray-400">
-                  Flowbite is an open-source library of interactive components
-                  built on top of Tailwind CSS including buttons, dropdowns,
-                  modals, navbars, and more.
-                </p>
-                <p className="text-gray-500 dark:text-gray-400">
-                  Check out this guide to learn how to&nbsp;
-                  <a
-                    href="https://flowbite.com/docs/getting-started/introduction/"
-                    className="text-cyan-600 hover:underline dark:text-cyan-500"
-                  >
-                    get started&nbsp;
-                  </a>
-                  and start developing websites even faster with components on
-                  top of Tailwind CSS.
+                  A healthcare professional will conduct a brief interview to
+                  ensure that you meet the eligibility criteria and that it's
+                  safe for you to donate. This step includes checking your blood
+                  pressure, pulse, and hemoglobin levels.
                 </p>
               </Accordion.Content>
             </Accordion.Panel>
@@ -98,20 +70,11 @@ const GotQuestions = () => {
               </Accordion.Title>
               <Accordion.Content>
                 <p className="mb-2 text-gray-500 dark:text-gray-400">
-                  Flowbite is an open-source library of interactive components
-                  built on top of Tailwind CSS including buttons, dropdowns,
-                  modals, navbars, and more.
-                </p>
-                <p className="text-gray-500 dark:text-gray-400">
-                  Check out this guide to learn how to&nbsp;
-                  <a
-                    href="https://flowbite.com/docs/getting-started/introduction/"
-                    className="text-cyan-600 hover:underline dark:text-cyan-500"
-                  >
-                    get started&nbsp;
-                  </a>
-                  and start developing websites even faster with components on
-                  top of Tailwind CSS.
+                  Navigate to our website where youll find a dedicated section
+                  for donor registration.Click on the Register or Sign Up button
+                  to create your donor account. Provide essential information,
+                  including your name, contact details, and any other required
+                  details.
                 </p>
               </Accordion.Content>
             </Accordion.Panel>

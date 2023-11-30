@@ -10,7 +10,7 @@ const AdminHome = () => {
   const [allDonationRequest] = useAllDonationRequest();
   const [allUsers] = useAllUsers();
   return (
-    <div>
+    <div data-aos="fade-up" data-aos-duration="1500">
       {/* admin home title */}
       <div>
         <h3 className="text-xl text-center md:text-4xl mt-6 md:mt-0">

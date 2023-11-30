@@ -98,7 +98,7 @@ const AllUsers = () => {
     });
   };
   return (
-    <div>
+    <div data-aos="fade-up" data-aos-duration="1500">
       {/* user dashboard title */}
       <h3 className="text-xl text-center md:text-4xl mt-6 md:mt-0">
         All <span className="text-bold text-[#FF6251]">Users</span>

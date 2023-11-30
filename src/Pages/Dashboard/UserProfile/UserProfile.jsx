@@ -19,7 +19,7 @@ const UserProfile = () => {
   }
 
   return (
-    <div>
+    <div data-aos="fade-up" data-aos-duration="1500">
       <div>
         <img
           className="rounded-full h-60 w-60"
