@@ -156,43 +156,181 @@ const Dashboard = () => {
         )}
       </div>
       <div
-        className={`z-[10] md:hidden absolute bg-red-100 left-0 w-full px-8 transition-all duration-500 ease-in ${
+        className={`z-[10] md:hidden absolute bg-red-100 left-0 w-full px-8 pb-4 transition-all duration-500 ease-in ${
           open ? "top-0 opacity-100" : "left-[-490px]"
         } opacity-0`}
       >
-        <ul className="md:flex md:items-center gap-5">
-          {" "}
-          <li className="md:ml-8 text-xl md:my-0 mt-7 mb-3">
-            <NavLink to="/dashboard/user-home">
-              <Button className="w-64 md:w-full" gradientMonochrome="failure">
-                <FaHome className="mr-2"></FaHome>User Home
-              </Button>
-            </NavLink>
-          </li>
-          <li className="md:ml-8 text-xl md:my-0 mb-3">
-            <NavLink to="/dashboard/user-profile">
-              <Button className="w-64 md:w-full" gradientMonochrome="failure">
-                <FaUser className="mr-2"></FaUser>User Profile
-              </Button>
-            </NavLink>
-          </li>
-          <li className="md:ml-8 text-xl md:my-0 mb-3">
-            <NavLink to="/dashboard/my-donation-request">
-              <Button className="w-64 md:w-full" gradientMonochrome="failure">
-                <BiSolidDonateBlood className="mr-2"></BiSolidDonateBlood>My
-                Donation Request
-              </Button>
-            </NavLink>
-          </li>
-          <li className="md:ml-8 text-xl md:my-0 mb-3">
-            <NavLink to="/dashboard/create-donation-request">
-              <Button className="w-64 md:w-full" gradientMonochrome="failure">
-                <IoIosCreate className="mr-2"></IoIosCreate>Create Donation
-                Request
-              </Button>
-            </NavLink>
-          </li>
-        </ul>
+        {/* donor nav mobile */}
+        {role === "donor" && (
+          <>
+            {" "}
+            <ul className="md:flex md:items-center gap-5">
+              {" "}
+              <li className="md:ml-8 text-xl md:my-0 mt-7 mb-3">
+                <NavLink to="/dashboard/user-home">
+                  <Button
+                    className="w-64 md:w-full"
+                    gradientMonochrome="failure"
+                  >
+                    <FaHome className="mr-2"></FaHome>User Home
+                  </Button>
+                </NavLink>
+              </li>
+              <li className="md:ml-8 text-xl md:my-0 mb-3">
+                <NavLink to="/dashboard/user-profile">
+                  <Button
+                    className="w-64 md:w-full"
+                    gradientMonochrome="failure"
+                  >
+                    <FaUser className="mr-2"></FaUser>User Profile
+                  </Button>
+                </NavLink>
+              </li>
+              <li className="md:ml-8 text-xl md:my-0 mb-3">
+                <NavLink to="/dashboard/my-donation-request">
+                  <Button
+                    className="w-64 md:w-full"
+                    gradientMonochrome="failure"
+                  >
+                    <BiSolidDonateBlood className="mr-2"></BiSolidDonateBlood>My
+                    Donation Request
+                  </Button>
+                </NavLink>
+              </li>
+              <li className="md:ml-8 text-xl md:my-0 mb-3">
+                <NavLink to="/dashboard/create-donation-request">
+                  <Button
+                    className="w-64 md:w-full"
+                    gradientMonochrome="failure"
+                  >
+                    <IoIosCreate className="mr-2"></IoIosCreate>Create Donation
+                    Request
+                  </Button>
+                </NavLink>
+              </li>
+            </ul>
+          </>
+        )}
+        {/* admin nav mobile */}
+        {role === "admin" && (
+          <>
+            {" "}
+            <ul className="md:flex md:items-center gap-5">
+              {" "}
+              <li className="md:ml-8 text-xl md:my-0 mt-7 mb-3">
+                <NavLink to="/dashboard/admin-home">
+                  <Button
+                    className="w-64 md:w-full"
+                    gradientMonochrome="failure"
+                  >
+                    <FaHome className="mr-2"></FaHome>Admin Home
+                  </Button>
+                </NavLink>
+              </li>
+              <li className="md:ml-8 text-xl md:my-0 mb-3">
+                <NavLink to="/dashboard/user-profile">
+                  <Button
+                    className="w-64 md:w-full"
+                    gradientMonochrome="failure"
+                  >
+                    <FaUser className="mr-2"></FaUser>User Profile
+                  </Button>
+                </NavLink>
+              </li>
+              <li className="md:ml-8 text-xl md:my-0 mb-3">
+                <NavLink to="/dashboard/all-users">
+                  <Button
+                    className="w-64 md:w-full"
+                    gradientMonochrome="failure"
+                  >
+                    <FaUsers className="mr-2"></FaUsers>All Users
+                  </Button>
+                </NavLink>
+              </li>
+              <li className="md:ml-8 text-xl md:my-0 mb-3">
+                <NavLink to="/dashboard/all-donation-request">
+                  <Button
+                    className="w-64 md:w-full"
+                    gradientMonochrome="failure"
+                  >
+                    <IoIosCreate className="mr-2"></IoIosCreate>All Donation
+                    Request
+                  </Button>
+                </NavLink>
+              </li>
+              <li className="md:ml-8 text-xl md:my-0 mb-3">
+                <NavLink to="/dashboard/content-management">
+                  <Button
+                    className="w-64 md:w-full"
+                    gradientMonochrome="failure"
+                  >
+                    <FaBlog className="mr-2"></FaBlog>Content Management
+                  </Button>
+                </NavLink>
+              </li>
+            </ul>
+          </>
+        )}
+        {/* volunteer mobile nav */}
+        {role === "volunteer" && (
+          <>
+            {" "}
+            <ul className="md:flex md:items-center gap-5">
+              {" "}
+              <li className="md:ml-8 text-xl md:my-0 mt-7 mb-3">
+                <NavLink to="/dashboard/admin-home">
+                  <Button
+                    className="w-64 md:w-full"
+                    gradientMonochrome="failure"
+                  >
+                    <FaHome className="mr-2"></FaHome>Volunteer Home
+                  </Button>
+                </NavLink>
+              </li>
+              <li className="md:ml-8 text-xl md:my-0 mb-3">
+                <NavLink to="/dashboard/user-profile">
+                  <Button
+                    className="w-64 md:w-full"
+                    gradientMonochrome="failure"
+                  >
+                    <FaUser className="mr-2"></FaUser>User Profile
+                  </Button>
+                </NavLink>
+              </li>
+              <li className="md:ml-8 text-xl md:my-0 mb-3">
+                <NavLink to="/dashboard/all-donation-request">
+                  <Button
+                    className="w-64 md:w-full"
+                    gradientMonochrome="failure"
+                  >
+                    <IoIosCreate className="mr-2"></IoIosCreate>All Donation
+                    Request
+                  </Button>
+                </NavLink>
+              </li>
+              <li className="md:ml-8 text-xl md:my-0 mb-3">
+                <NavLink to="/dashboard/content-management">
+                  <Button
+                    className="w-64 md:w-full"
+                    gradientMonochrome="failure"
+                  >
+                    <FaBlog className="mr-2"></FaBlog>Content Management
+                  </Button>
+                </NavLink>
+              </li>
+              <li className="md:ml-8 text-xl md:my-0 mb-3">
+                <NavLink to="/">
+                  <Button
+                    className="w-64 md:w-full"
+                    gradientMonochrome="failure"
+                  >
+                    <FaHome className="mr-2"></FaHome>Back To Home
+                  </Button>
+                </NavLink>
+              </li>
+            </ul>
+          </>
+        )}
       </div>
 
       {/* dashboard content */}

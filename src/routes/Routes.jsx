@@ -39,7 +39,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/donation-request-details/:id",
-        element: <DonationDetails></DonationDetails>,
+        element: (
+          <PrivateRoute>
+            <DonationDetails></DonationDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/search",
@@ -51,11 +55,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/blogs",
-        element: (
-          <PrivateRoute>
-            <Blogs></Blogs>
-          </PrivateRoute>
-        ),
+        element: <Blogs></Blogs>,
       },
       {
         path: "/login",

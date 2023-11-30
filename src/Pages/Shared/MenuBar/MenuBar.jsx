@@ -99,7 +99,7 @@ const MenuBar = () => {
         </div>
         <ul className="md:flex md:items-center gap-5 hidden">{navLinks}</ul>
         <div className="pb-12 md:pb-0 hidden md:block">
-          {!user && (
+          {!user?.email && (
             <div className="flex items-center gap-5">
               <Link to="/login">
                 <Button gradientMonochrome="failure">Login</Button>
@@ -109,7 +109,7 @@ const MenuBar = () => {
               </Link>
             </div>
           )}
-          {user && (
+          {user?.email && (
             <div className="flex gap-5 items-center">
               <Button onClick={handleSignOut} gradientMonochrome="failure">
                 Logout

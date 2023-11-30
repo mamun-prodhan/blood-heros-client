@@ -94,7 +94,6 @@ const UpdateUserProfile = () => {
             <TextInput
               type="text"
               id="name"
-              defaultValue={loggedInUser.name}
               placeholder="name"
               required
               {...register("name")}
@@ -127,12 +126,7 @@ const UpdateUserProfile = () => {
             <div className="mb-2 block">
               <Label htmlFor="bloodGroup" value="Select your Blood Group" />
             </div>
-            <Select
-              id="bloodGroup"
-              defaultValue={loggedInUser.bloodGroup}
-              required
-              {...register("bloodGroup")}
-            >
+            <Select id="bloodGroup" required {...register("bloodGroup")}>
               <option disabled value="default">
                 Select a category
               </option>
@@ -151,12 +145,7 @@ const UpdateUserProfile = () => {
             <div className="mb-2 block">
               <Label htmlFor="upazila" value="Select your Upazila" />
             </div>
-            <Select
-              id="upazila"
-              required
-              defaultValue={loggedInUser.upazila}
-              {...register("upazila")}
-            >
+            <Select id="upazila" required {...register("upazila")}>
               {upazilas.map((upazila) => (
                 <option key={upazila.id} value={upazila.name}>
                   {upazila.name}
@@ -169,12 +158,7 @@ const UpdateUserProfile = () => {
             <div className="mb-2 block">
               <Label htmlFor="district" value="Select your District" />
             </div>
-            <Select
-              id="district"
-              defaultValue={loggedInUser.district}
-              required
-              {...register("district")}
-            >
+            <Select id="district" required {...register("district")}>
               {districts.map((district) => (
                 <option key={district.id} value={district.name}>
                   {district.name}

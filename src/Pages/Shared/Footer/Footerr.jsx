@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 
 const Footerr = () => {
   return (
-    <footer className="w-full px-4 md:px-20 pt-10 pb-5 bg-[#FDE8E8]">
+    <footer
+      data-aos="fade-down"
+      data-aos-duration="1500"
+      className="w-full px-4 md:px-20 pt-10 pb-5 bg-[#FDE8E8]"
+    >
       <div className="flex gap-5 flex-col md:flex-row items-center justify-between">
         <div className="flex flex-col md:flex-row items-center gap-5">
           <img src={logo} alt="" />{" "}
