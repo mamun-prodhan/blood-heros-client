@@ -18,6 +18,11 @@ const DonationRequest = () => {
           Loading
         </p>
       )}
+      {!pendingRequest.length && (
+        <p className="text-xl font-bold text-center my-20">
+          We have no blood donation request
+        </p>
+      )}
       {pendingRequest.length > 0 && (
         <div className="mt-10">
           <div className="overflow-x-auto my-3 md:my-16">

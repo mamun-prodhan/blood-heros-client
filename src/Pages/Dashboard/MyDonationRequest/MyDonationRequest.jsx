@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useEffect, useState } from "react";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 const MyDonationRequest = () => {
   const [myDonationRequest, refetch] = useMyDonationRequest();
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const [loadedData, setLoadedData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("pending");
   console.log("selected category");
@@ -24,6 +26,39 @@ const MyDonationRequest = () => {
     );
     setLoadedData(loadedFilterData);
   }, [myDonationRequest, selectedCategory]);
+
+  // handle done
+  const handleDone = (id) => {
+    axiosSecure.patch(`/donation/done/${id}`).then((res) => {
+      console.log("make done response", res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `Blood Donation Done`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
+  // handle canceled
+  const handleCanceled = (id) => {
+    axiosSecure.patch(`/donation/canceled/${id}`).then((res) => {
+      console.log("make canceled response", res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `Blood Donation Canceled`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
 
   // handle delete request
   const handleDelete = (id) => {
@@ -162,8 +197,16 @@ const MyDonationRequest = () => {
                           label="Action"
                           dismissOnClick={false}
                         >
-                          <Dropdown.Item>Done</Dropdown.Item>
-                          <Dropdown.Item>Cancel</Dropdown.Item>
+                          <Dropdown.Item
+                            onClick={() => handleDone(request._id)}
+                          >
+                            Done
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            onClick={() => handleCanceled(request._id)}
+                          >
+                            Cancel
+                          </Dropdown.Item>
                         </Dropdown>
                       ) : (
                         " "
