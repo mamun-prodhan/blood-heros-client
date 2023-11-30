@@ -151,9 +151,7 @@ const MyDonationRequest = () => {
                       </Button>
                     </Table.Cell>
                     <Table.Cell>
-                      <Link
-                        to={`/dashboard/donation-request-details/${request._id}`}
-                      >
+                      <Link to={`/donation-request-details/${request._id}`}>
                         <Button size="xs">View</Button>
                       </Link>
                     </Table.Cell>
