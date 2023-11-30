@@ -268,6 +268,16 @@ const Dashboard = () => {
                   </Button>
                 </NavLink>
               </li>
+              <li className="md:ml-8 text-xl md:my-0 mb-3">
+                <NavLink to="/">
+                  <Button
+                    className="w-64 md:w-full"
+                    gradientMonochrome="failure"
+                  >
+                    <FaHome className="mr-2"></FaHome>Back To Home
+                  </Button>
+                </NavLink>
+              </li>
             </ul>
           </>
         )}
