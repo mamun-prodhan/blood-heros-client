@@ -5,12 +5,16 @@ import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useEffect, useState } from "react";
 import useAllDonationRequest from "../../../hooks/useAllDonationRequest";
+import useProfile from "../../../hooks/useProfile";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 const AllDonationRequest = () => {
   const [allDonationRequest, refetch, isLoading] = useAllDonationRequest();
+  const [loggedInUser] = useProfile();
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const [loadedData, setLoadedData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("pending");
-  console.log("selected category");
+  const isButtonDisabled = loggedInUser.role === "volunteer";
 
   //   filter onclick
   const handleFilter = (e) => {
@@ -25,6 +29,38 @@ const AllDonationRequest = () => {
     );
     setLoadedData(loadedFilterData);
   }, [allDonationRequest, selectedCategory]);
+  // handle done
+  const handleDone = (id) => {
+    axiosSecure.patch(`/donation/done/${id}`).then((res) => {
+      console.log("make done response", res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `Blood Donation Done`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
+  // handle canceled
+  const handleCanceled = (id) => {
+    axiosSecure.patch(`/donation/canceled/${id}`).then((res) => {
+      console.log("make canceled response", res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `Blood Donation Canceled`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
 
   // handle delete request
   const handleDelete = (id) => {
@@ -139,7 +175,9 @@ const AllDonationRequest = () => {
                       <Link
                         to={`/dashboard/update-donation-request/${request._id}`}
                       >
-                        <Button size="xs">Edit</Button>
+                        <Button size="xs" disabled={isButtonDisabled}>
+                          Edit
+                        </Button>
                       </Link>
                     </Table.Cell>
                     <Table.Cell>
@@ -147,6 +185,7 @@ const AllDonationRequest = () => {
                         onClick={() => handleDelete(request._id)}
                         gradientMonochrome="failure"
                         size="xs"
+                        disabled={isButtonDisabled}
                       >
                         Delete
                       </Button>
@@ -155,7 +194,9 @@ const AllDonationRequest = () => {
                       <Link
                         to={`/dashboard/donation-request-details/${request._id}`}
                       >
-                        <Button size="xs">View</Button>
+                        <Button size="xs" disabled={isButtonDisabled}>
+                          View
+                        </Button>
                       </Link>
                     </Table.Cell>
                     <Table.Cell>
@@ -165,8 +206,16 @@ const AllDonationRequest = () => {
                           label="Action"
                           dismissOnClick={false}
                         >
-                          <Dropdown.Item>Done</Dropdown.Item>
-                          <Dropdown.Item>Cancel</Dropdown.Item>
+                          <Dropdown.Item
+                            onClick={() => handleDone(request._id)}
+                          >
+                            Done
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            onClick={() => handleCanceled(request._id)}
+                          >
+                            Cancel
+                          </Dropdown.Item>
                         </Dropdown>
                       ) : (
                         " "

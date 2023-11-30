@@ -1,15 +1,50 @@
-import { Badge, Button, Dropdown, Spinner, Table } from "flowbite-react";
+import { Badge, Button, Dropdown, Table } from "flowbite-react";
 import useMyDonationRequest from "../../../hooks/useMyDonationRequest";
 import useProfile from "../../../hooks/useProfile";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const UserHome = () => {
   const [loggedInUser] = useProfile();
   const [myDonationRequest, refetch] = useMyDonationRequest();
   const axiosPublic = useAxiosPublic();
-  console.log(myDonationRequest);
+  const axiosSecure = useAxiosSecure();
+  const isButtonDisabled = loggedInUser.role === "volunteer";
+
+  // handle done
+  const handleDone = (id) => {
+    axiosSecure.patch(`/donation/done/${id}`).then((res) => {
+      console.log("make done response", res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `Blood Donation Done`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
+  // handle canceled
+  const handleCanceled = (id) => {
+    axiosSecure.patch(`/donation/canceled/${id}`).then((res) => {
+      console.log("make canceled response", res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `Blood Donation Canceled`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
 
   // handle delete request
   const handleDelete = (id) => {
@@ -110,7 +145,9 @@ const UserHome = () => {
                       <Link
                         to={`/dashboard/update-donation-request/${request._id}`}
                       >
-                        <Button size="xs">Edit</Button>
+                        <Button size="xs" disabled={isButtonDisabled}>
+                          Edit
+                        </Button>
                       </Link>
                     </Table.Cell>
                     <Table.Cell>
@@ -118,6 +155,7 @@ const UserHome = () => {
                         onClick={() => handleDelete(request._id)}
                         gradientMonochrome="failure"
                         size="xs"
+                        disabled={isButtonDisabled}
                       >
                         Delete
                       </Button>
@@ -126,7 +164,9 @@ const UserHome = () => {
                       <Link
                         to={`/dashboard/donation-request-details/${request._id}`}
                       >
-                        <Button size="xs">View</Button>
+                        <Button size="xs" disabled={isButtonDisabled}>
+                          View
+                        </Button>
                       </Link>
                     </Table.Cell>
                     <Table.Cell>
@@ -136,8 +176,16 @@ const UserHome = () => {
                           label="Action"
                           dismissOnClick={false}
                         >
-                          <Dropdown.Item>Done</Dropdown.Item>
-                          <Dropdown.Item>Cancel</Dropdown.Item>
+                          <Dropdown.Item
+                            onClick={() => handleDone(request._id)}
+                          >
+                            Done
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            onClick={() => handleCanceled(request._id)}
+                          >
+                            Cancel
+                          </Dropdown.Item>
                         </Dropdown>
                       ) : (
                         " "

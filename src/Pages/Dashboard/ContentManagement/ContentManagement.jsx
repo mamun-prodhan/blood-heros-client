@@ -5,13 +5,15 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
 import useAllBlogs from "../../../hooks/useAllBlogs";
+import useProfile from "../../../hooks/useProfile";
 
 const ContentManagement = () => {
   const [allBlogs, refetch, isLoading] = useAllBlogs();
+  const [loggedInUser] = useProfile();
   const axiosSecure = useAxiosSecure();
   const [loadedData, setLoadedData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("draft");
-  console.log(allBlogs);
+  const isButtonDisabled = loggedInUser.role === "volunteer";
 
   //   filter onclick
   const handleFilter = (e) => {
@@ -166,6 +168,7 @@ const ContentManagement = () => {
                               onClick={() => handlePublish(singleBlog)}
                               gradientMonochrome="success"
                               size="xs"
+                              disabled={isButtonDisabled}
                             >
                               Publish
                             </Button>
@@ -175,6 +178,7 @@ const ContentManagement = () => {
                               onClick={() => handleUnpublish(singleBlog)}
                               gradientMonochrome="failure"
                               size="xs"
+                              disabled={isButtonDisabled}
                             >
                               Unpublish
                             </Button>
@@ -185,6 +189,7 @@ const ContentManagement = () => {
                             onClick={() => handleDelete(singleBlog._id)}
                             color="failure"
                             size="xs"
+                            disabled={isButtonDisabled}
                           >
                             Delete
                           </Button>
