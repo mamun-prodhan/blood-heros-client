@@ -23,7 +23,7 @@ const Banner = () => {
           <Link to="/register">
             <Button gradientMonochrome="failure">Join As Donor</Button>
           </Link>
-          <Link to="/login">
+          <Link to="/search">
             <Button outline gradientDuoTone="pinkToOrange">
               Search Donor
             </Button>

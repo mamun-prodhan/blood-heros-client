@@ -55,6 +55,14 @@ const MenuBar = () => {
             Dashboard
           </NavLink>
         )}
+        {loggedInUser.role === "volunteer" && (
+          <NavLink
+            to="/dashboard/admin-home"
+            className="text-gray-800 px-4 py-2 rounded-md hover:bg-red-300 duration-500"
+          >
+            Dashboard
+          </NavLink>
+        )}
         {loggedInUser.role === "admin" && (
           <NavLink
             to="/dashboard/admin-home"

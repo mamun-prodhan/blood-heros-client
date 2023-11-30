@@ -19,6 +19,7 @@ import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import AllDonationRequest from "../Pages/Dashboard/AllDonationRequest/AllDonationRequest";
 import ContentManagement from "../Pages/Dashboard/ContentManagement/ContentManagement";
 import AddBlog from "../Pages/Dashboard/AddBlog/AddBlog";
+import SearchPage from "../Pages/SearchPage/SearchPage";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/donation-request",
         element: <h2>donation request</h2>,
+      },
+      {
+        path: "/search",
+        element: <SearchPage></SearchPage>,
       },
       {
         path: "/blogs",
