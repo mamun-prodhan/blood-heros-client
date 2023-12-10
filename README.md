@@ -6,7 +6,8 @@
 
 ## Role Specific Dashboards:
 
-- _Users:_
+### Users:
+
 - Can create donation requests.
 - View their donation history.
 - Access information about upcoming donation events.
