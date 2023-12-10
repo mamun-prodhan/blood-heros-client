@@ -1,6 +1,6 @@
-# FoodBuzz
+# Blood Heros
 
-**Live Link:** [https://blog-b8a11.web.app/](https://blog-b8a11.web.app/)
+**Live Link:** [https://bloodheros-b8-a12.web.app/](https://bloodheros-b8-a12.web.app/)
 
 # Features and Functionalities
 
@@ -14,6 +14,12 @@
 
 ### Volunteers:
 
-- Can create donation requests.
-- View their donation history.
-- Access information about upcoming donation events.
+- View statistics related to blood donation activities.
+- See pending donation requests.
+- Have limited actions, such as confirming or rejecting donation requests.
+
+### Admins:
+
+- Control all functionalities.
+- Manage user accounts.
+- Monitor donation statistics and trends.
